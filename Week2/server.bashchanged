@@ -17,7 +17,6 @@ then
 	echo "exiting..."
 	exit 0
 elif [[ "${response}" == "Y" || "${response}" == "y" ]]
-then
 	echo "Creating the wireguard config file..."
 fi
 
