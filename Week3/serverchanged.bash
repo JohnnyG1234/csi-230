@@ -17,7 +17,10 @@ then
 	echo "exiting..."
 	exit 0
 elif [[ "${response}" == "Y" || "${response}" == "y" ]]
+then
 	echo "Creating the wireguard config file..."
+else
+	echo "Invalid input"
 fi
 
 # Create a private key

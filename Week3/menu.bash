@@ -85,7 +85,7 @@ function vpn() {
 	read -p "Please  enter a choice above:" choice
 	case "$choice" in
 	A|a)
-	  bash peer.bash
+	  bash peerchanged.bash
 	  tail -6 wg0.conf |less
 	;;
 	D|d) #Create a promtp for the user
