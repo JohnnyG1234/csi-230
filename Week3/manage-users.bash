@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while getopts 'hdau:' OPTION ; do
+while getopts 'hdau:c' OPTION ; do
 
 	case "$OPTION" in
 
@@ -16,6 +16,13 @@ while getopts 'hdau:' OPTION ; do
 			echo "Usage: $ (basename $0) [-a]|[-d] -u username"
 			echo ""
 			exit 1
+		;;
+		c)
+			result=cat wg0.conf | grep /${t_user}
+			if [[${result} == ""]]
+			then
+				echo "User does not exist in wg0.conf"
+
 		;;
 
 		*)

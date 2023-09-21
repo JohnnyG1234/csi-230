@@ -2,10 +2,15 @@
 
 # Storyline: Create peer VPN configuration file
 
+if [[$1 == ""]]
+then
+	# What is the user / peer's name
+	echo -n "What is the peer's name? "
+	read the_client
+else
 
-# What is the user / peer's name
-echo -n "What is the peer's name? "
-read the_client
+	the_client="$1"
+fi
 
 # Filename variable
 pFile="${the_client}-wg0.conf"
