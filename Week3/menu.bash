@@ -56,7 +56,7 @@ function admin_menu(){
 		V|v) vpn
 		;;
 
-		4) Exit 0
+		4) exit 0
 		;;
 
 		*)
