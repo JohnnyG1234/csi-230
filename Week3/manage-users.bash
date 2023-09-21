@@ -31,7 +31,7 @@ while getopts 'hdau:c' OPTION ; do
 
 done
 
-if [[(${u_del} == "" && ${u_add} == "") || (${u_del} != "" && ${u_add} != "") ]] 
+if [[(${u_del} == "" && ${u_add} == "" && ${u_check} == "") || (${u_del} != "" && ${u_add} != "") ]] 
 then
 
 	echo "Please specify -a or -d and the -u and username."
