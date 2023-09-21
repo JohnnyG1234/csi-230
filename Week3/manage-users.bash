@@ -53,7 +53,7 @@ if [[ ${u_del} ]]
 then
 	
 	echo "Deleting user..."
-	sed -i "/# ${t_user begin/,/# ${t_user} end/d" wg0.conf
+	sed -i "/# ${t_user} begin/,/# ${t_user} end/d" wg0.conf
 
 fi
 
