@@ -75,45 +75,77 @@ function admin_menu(){
 }
 
 function vpn() {
-
 	clear
-	echo "[A}dd a user"
-	echo "[D}elete a user"
+	echo "[A]dd a peer"
+	echo "[D]elete a peer"
+	echo "[C]heck if a user exists"
 	echo "[B]ack to admin menu"
 	echo "[M]ain menu"
-	echo "[E]xit"
-	read -p "Please selct an option: " choice
-
+	echo "[E]xit "
+	read -p "Please  enter a choice above:" choice
 	case "$choice" in
+	A|a)
+	  bash peer.bash
+	  tail -6 wg0.conf |less
+	;;
+	D|d) #Create a promtp for the user
+		read -p "Please specify a user" user
+		# Call the manage-users.bash and pass the proper switches and arguement
+		bash manage-users.bash -d -u "$user"
+		#  to delete the user
+	;;
+	C|c) #check if a user exists
+		read -p "Which user would you like to check for?" user
+		bash manage-users.bash -c -u ${user}
+		read -p "Press any button to proceed:" response
+	;;
+	B|b) admin_menu
+	;;
+	M|m) menu
+	;;
+	E|e) exit 0
+	;;
+	*)
+		invalid_opt
+		vpn
+	;;
 
-		A|a)
+	esac
 
-			bash peerchanged.bash
-			tail -6 wg0.conf |less
+vpn
 
+}
+
+function security_menu() {
+	clear
+	echo "[O]pen Network Sockets"
+	echo "[U]ID"
+	echo "[C]heck the last 10 logged in users"
+	echo "[L]ogged in users"
+	echo "[B]ack to main menu"
+	echo "[E]xit"
+	read -p "Please enter a choice above:" choice
+	case "$choice" in
+		O|o) netstat -l |less
 		;;
-		D|d) bash manage-users.bash
+		U|u) cat /etc/passwd | grep "x:0" | less
 		;;
-		B|b) admin_menu
+		C|c) last -n 10 | less
 		;;
-		M|m) menu
+		L|l) who | less
 		;;
 		E|e) exit 0
 		;;
+		B|b) menu
+		;;
 		*)
-
-			echo ""
-			echo "Invalid option"
-			echo ""
-			sleep 2
-
-			vpn
-
+			invalid_opt
 		;;
 
-
 	esac
-	vpn
+
+
+security_menu
 }
 
 menu

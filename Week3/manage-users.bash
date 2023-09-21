@@ -17,12 +17,7 @@ while getopts 'hdau:c' OPTION ; do
 			echo ""
 			exit 1
 		;;
-		c)
-			result=cat wg0.conf | grep /${t_user}
-			if [[${result} == ""]]
-			then
-				echo "User does not exist in wg0.conf"
-
+		c) u_check=${OPTION}
 		;;
 
 		*)
@@ -68,4 +63,15 @@ then
 
 	echo "Create the user..."
 	bash peer.bash ${t_user}	
+fi
+
+if [[ ${u_check} ]]
+then
+	result=$(cat wg0.conf | grep ${t_user})
+		if [[ ${result} != ""  ]]
+	then
+		echo "The user ${t_user} exists."
+	else
+		echo "The user ${t_user} does not exist."
+	fi
 fi
