@@ -48,8 +48,10 @@ function menu() {
 
 function iptables()
 {
-	
+
 
 
 	esac
 }
+
+menu
