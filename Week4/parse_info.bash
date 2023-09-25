@@ -1,11 +1,14 @@
 #check if info file exists, if not exit
 
-tfile="targeted_threats.csv"
+
+
+tfile="targetedthreats.csv"
 if [[ -f "{tfile}" ]]
 then
 	echo "File exists"
 else
-	echo "File Does not exist"
+	echo "File Does not exist, dowloading file"
+	wget https://raw.githubusercontent.com/botherder/targetedthreats/master/targetedthreats.csv
 fi
 
 function menu() {
@@ -49,9 +52,6 @@ function menu() {
 function iptables()
 {
 	echo "Hello"
-
-
-	esac
 }
 
 menu
