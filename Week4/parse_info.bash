@@ -1,9 +1,7 @@
 #check if info file exists, if not exit
 
-
-
-tfile="targetedthreats.csv"
-if [[ -f "{tfile}" ]]
+file="~/targetedthreats.csv"
+if [[ -f $"file" ]];
 then
 	echo "File exists"
 else
