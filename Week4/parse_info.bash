@@ -48,7 +48,7 @@ function menu() {
 
 function iptables()
 {
-
+	echo "Hello"
 
 
 	esac
