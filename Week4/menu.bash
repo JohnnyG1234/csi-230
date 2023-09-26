@@ -123,6 +123,7 @@ function security_menu() {
 	echo "[C]heck the last 10 logged in users"
 	echo "[L]ogged in users"
 	echo "[B]ack to main menu"
+	echo "[1] Block list menu"
 	echo "[E]xit"
 	read -p "Please enter a choice above:" choice
 	case "$choice" in
@@ -137,6 +138,8 @@ function security_menu() {
 		E|e) exit 0
 		;;
 		B|b) menu
+		;;
+		1) bash parse_info.bash
 		;;
 		*)
 			invalid_opt

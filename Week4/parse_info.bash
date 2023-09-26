@@ -27,13 +27,13 @@ function menu() {
 		1) iptables
 		;;
 
-		2) cisco
+		2) iptables
 		;;
 
-		3) windowFirewall
+		3) iptables
 		;;
 
-		4) MacOsX
+		4) iptables
 		;;
 
 		*)
