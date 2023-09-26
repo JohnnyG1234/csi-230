@@ -1,7 +1,9 @@
+#!/bin/bash
+
 #check if info file exists, if not exit
 
-file="~/targetedthreats.csv"
-if [[ -f $"file" ]];
+file="targetedthreats.csv"
+if [[ -f "$file" ]];
 then
 	echo "File exists"
 else
@@ -49,7 +51,8 @@ function menu() {
 
 function iptables()
 {
-	echo "Hello"
+	echo "class-map match-any BAD_URLS"
+	echo $(egrep 'domain' /home/john/csi-230/Week4/targetedthreats.csv | less)
 }
 
 menu
