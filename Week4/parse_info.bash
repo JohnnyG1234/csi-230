@@ -53,6 +53,7 @@ function iptables()
 {
 	echo "class-map match-any BAD_URLS"
 	echo $(egrep 'domain' /home/john/csi-230/Week4/targetedthreats.csv | less)
+	sleep 5
 }
 
 menu
