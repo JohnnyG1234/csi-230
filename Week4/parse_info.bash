@@ -126,4 +126,3 @@ case "$OPTION" in
 		echo "Invalid input..."
 		exit 1
 	;;
-
