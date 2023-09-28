@@ -52,12 +52,8 @@ function menu() {
 function iptables()
 {
 	echo "class-map match-any BAD_URLS"
-<<<<<<< Updated upstream
-	echo $(egrep 'domain' /home/john/csi-230/Week4/targetedthreats.csv | less)
+	echo $(egrep [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.) > badips.txt
 	sleep 5
-=======
-	echo $(egrep [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)
->>>>>>> Stashed changes
 }
 
 menu
