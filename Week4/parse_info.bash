@@ -52,7 +52,7 @@ function menu() {
 function iptables()
 {
 	echo "class-map match-any BAD_URLS"
-	egrep [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3} $file
+	egrep -o `[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}` ~/targetedthreats.csv | sort -u | tee badips.txt 
 	sleep 5
 }
 
