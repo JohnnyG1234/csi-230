@@ -52,7 +52,7 @@ function menu() {
 function iptables()
 {
 	echo "class-map match-any BAD_URLS"
-	echo $(egrep [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.) $file
+	egrep [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\. $file
 	sleep 5
 }
 
