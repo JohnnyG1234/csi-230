@@ -1,59 +1,31 @@
 #!/bin/bash
 
-#check if info file exists, if not exit
+function create_badIPs(){
 
-file="~/targetedthreats.csv"
-if [[ -f "$file" ]];
+	wget https://rules.emergingthreats.net/blockrules/emerging-drop.suricata.rules -0 /tmp/emerging-drop.suricata.rules
+
+	egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.0/[0-9]{1,2}' /tmp/emerging-drop.suricata.rules | sort -u | tee badips.txt
+}
+
+
+if [[ -f badIPs.txt ]]
 then
-	echo "File exists"
+	read -p "The badIps.txt file already exist, would you like to redownload it? [Y/N] : " answer
+	case "$answer" in
+		Y|y)
+			echo "Creating badIps.txt..."
+			create_badIPs
+		;;
+		N|n)
+			echo "Not redownloading badIps.txt..."
+		;;
+		*)
+			echo "Invalid value"
+			exit 1
+		;;
+	esac
 else
-	echo "File Does not exist, dowloading file"
-	wget https://raw.githubusercontent.com/botherder/targetedthreats/master/targetedthreats.csv
+	echo "The badIps.txt file does not exist yet. Downloading file..."
+	create_badIPs
 fi
 
-function menu() {
-
-	# clears the screen
-	clear
-
-	echo "[1] iptables"
-	echo "[2] cisco"
-	echo "[3] windows firewall"
-	echo "[4] Mac OS X"
-	read -p "Please enter a choice above: " choice
-
-	case "$choice" in
-
-		1) iptables
-		;;
-
-		2) iptables
-		;;
-
-		3) iptables
-		;;
-
-		4) iptables
-		;;
-
-		*)
-
-			echo ""
-			echo "Invalid option"
-			echo ""
-			sleep 2
-
-			menu
-		;;
-
-	esac
-}
-
-function iptables()
-{
-	echo "class-map match-any BAD_URLS"
-	egrep -o `[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}` ~/targetedthreats.csv | sort -u | tee badips.txt 
-	sleep 5
-}
-
-menu
