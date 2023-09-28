@@ -2,7 +2,7 @@
 
 #check if info file exists, if not exit
 
-file="targetedthreats.csv"
+file="~/targetedthreats.csv"
 if [[ -f "$file" ]];
 then
 	echo "File exists"
