@@ -7,7 +7,66 @@ function create_badIPs(){
 	egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.0/[0-9]{1,2}' /tmp/emerging-drop.suricata.rules | sort -u | tee badips.txt
 }
 
-function iptables(){
+
+if [[ -f badIPs.txt ]]
+then
+	read -p "The badIps.txt file already exist, would you like to redownload it? [Y/N] : " answer
+	case "$answer" in
+		Y|y)
+			echo "Creating badIps.txt..."
+			create_badIPs
+		;;
+		N|n)
+			echo "Not redownloading badIps.txt..."
+		;;
+		*)
+			echo "Invalid value"
+			exit 1
+		;;
+	esac
+else
+	echo "The badIps.txt file does not exist yet. Downloading file..."
+	create_badIPs
+fi
+
+
+echo "Choose a format"
+echo "[1] iptables"
+echo "[2] cisco"
+echo "[3] wfirewall"
+echo "[4] macOS"
+echo "[5] parseCisco"
+echo "[6] exit"
+
+read -p "Please choose an option above: " OPTION
+
+case "$OPTION" in
+	1) 
+		iptables
+	;;
+	2) 
+		cisco
+	;;
+	3) 
+		wfirewall
+	;;
+	4)
+		macOS
+	;;
+	5)
+		parseCisco
+	;;
+	6) 
+		echo "Exiting..."
+		exit 0
+	;;
+	*)
+		echo "Invalid input..."
+		exit 1
+	;;
+esac
+
+	function iptables(){
 	for eachip in $(cat badips.txt)
 	do
 		echo "iptables -a input -s ${eachip} -j drop" | tee -a badips.iptables
@@ -68,61 +127,3 @@ function parseCisco(){
 	rm threats.txt
 	echo 'Cisco URL filters file successfully parsed and created at "ciscothreats.txt"'
 }
-
-
-if [[ -f badIPs.txt ]]
-then
-	read -p "The badIps.txt file already exist, would you like to redownload it? [Y/N] : " answer
-	case "$answer" in
-		Y|y)
-			echo "Creating badIps.txt..."
-			create_badIPs
-		;;
-		N|n)
-			echo "Not redownloading badIps.txt..."
-		;;
-		*)
-			echo "Invalid value"
-			exit 1
-		;;
-	esac
-else
-	echo "The badIps.txt file does not exist yet. Downloading file..."
-	create_badIPs
-fi
-
-
-echo "Choose a format"
-echo "[1] iptables"
-echo "[2] cisco"
-echo "[3] wfirewall"
-echo "[4] macOS"
-echo "[5] parseCisco"
-echo "[6] exit"
-
-read -p "Please choose an option above: " OPTION
-
-case "$OPTION" in
-	1) 
-		iptables
-	;;
-	2) 
-		cisco
-	;;
-	3) 
-		wfirewall
-	;;
-	4)
-		macOS
-	;;
-	5)
-		parseCisco
-	;;
-	6) 
-		echo "Exiting..."
-		exit 0
-	;;
-	*)
-		echo "Invalid input..."
-		exit 1
-	;;
