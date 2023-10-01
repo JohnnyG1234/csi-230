@@ -17,5 +17,10 @@ pmax=$(egrep -i '^PASS_MAX_DAYS' /etc/login.defs | awk ' { print $2 } ')
 # Check for password max
 checks "Password Max Days" "365" "${pmax}"
 
+# Check for password min
 pmin=$(egrep -i '^PASS_MIN_DAYS' /etc/login.defs | awk ' { print $2 } ')
 checks "Password min days" "14" "${pmin}"
+
+# Check the pass warn age
+pwarn=$(egrep -i '^PASS_WARN_AGE' /etc/login.defs | awk ' { print $2 } ')
+checks "Password warn age" "7" "${pwarn}"
