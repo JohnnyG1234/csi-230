@@ -42,3 +42,6 @@ done
 
 chkIpForward=$(egrep -i "net\.ipv4\.ip_forward" /etc/sysctl.conf /etc/sysctl.d/* | awk ' { print $1 } ')
 checks "IP Forwading" "0" "${chkIpForward: -1}"
+
+chkICMPRe=$(grep "net\.ipv4\.conf\.default\.send_redirects" /etc/sysctl.conf/etc/sysctl.d/* | awk ' { print $1 } ')
+checks "ICMP redirects" "0" "${chkICMRe}"
