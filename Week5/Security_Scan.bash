@@ -52,3 +52,10 @@ checks "Uid in /etc/crontab" "0/" "${chkUid}"
 
 chkGid=$(stat /etc/crontab | grep "Gid:" | awk ' {print $9 } ')
 checks "Gid in /etc/crontab" "0/" "${chkGid}"
+
+chkUid=$(stat /etc/crontab.hourly | grep "Uid:" | awk ' {print $5 } ')
+checks "Uid in /etc/crontab.hourly" "0/" "${chkUid}"
+
+
+chkGid=$(stat /etc/crontab.hourly | grep "Gid:" | awk ' {print $9 } ')
+checks "Gid in /etc/crontab.hourly" "0/" "${chkGid}"
