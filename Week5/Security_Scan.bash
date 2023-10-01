@@ -46,5 +46,5 @@ checks "IP Forwading" "0" "${chkIpForward: -1}"
 chkICMPRe=$(sysctl net.ipv4.conf.all.send_redirects | awk ' {print $3 } ')
 checks "ICMP redirects" "0" "${chkICMPRe}"
 
-chkUid=$(stat /etc/crontab | grep "Uid:")
+chkUid=$(stat /etc/crontab | grep "Uid:" | awk ' {print $5 } ')
 checks "Uid in /etc/crontab" "0/" "${chkUid}"
