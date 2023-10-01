@@ -61,3 +61,4 @@ checks "Gid for pass perm" "0/" "${chkGid}"
 
 chkAccesPass=$(stat /etc/passwd | grep "Acces:" | awk ' {print $2 } ')
 checks "Acces num for pass" "(0644/-rw-r--r--)" "${chkAccesPass}"
+echo "${chkAccesPass}"
