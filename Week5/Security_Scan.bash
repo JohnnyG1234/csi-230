@@ -39,3 +39,6 @@ do
     checks "Home Directory ${eachDir}" "drwx------" "${chDir}"
 
 done
+
+chkIpForward=$(grep "net\.ipv4\.ip_forward" /etc/sysctl.conf /etc/sysctl.d/*)
+checks "IP Forwading" "0" "${chkIpForward}"
