@@ -45,3 +45,4 @@ checks "IP Forwading" "0" "${chkIpForward: -1}"
 
 chkICMPRe=$(sysctl net.ipv4.conf.all.send_redirects)
 checks "ICMP redirects" "0" "${chkICMRe}"
+echo "${chkICMPRe}"
