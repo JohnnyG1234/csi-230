@@ -26,5 +26,5 @@ pwarn=$(egrep -i '^PASS_WARN_AGE' /etc/login.defs | awk ' { print $2 } ')
 checks "Password warn age" "7" "${pwarn}"
 
 # Check the SSH UsePam configuration
-chkSSHPAM=$(egrep -i "^UsePAM" /etc/ssh/ssh_config.d | awk ' { print $2 } ')
+chkSSHPAM=$(egrep -i "^UsePAM" /etc/ssh/ssh_config | awk ' { print $2 } ')
 checks "SSH UsePam" "yes" "${chkSSHPAM}"
