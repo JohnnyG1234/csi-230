@@ -48,3 +48,7 @@ checks "ICMP redirects" "0" "${chkICMPRe}"
 
 chkUid=$(stat /etc/crontab | grep "Uid:" | awk ' {print $5 } ')
 checks "Uid in /etc/crontab" "0/" "${chkUid}"
+
+
+chkGid=$(stat /etc/crontab | grep "Gid:" | awk ' {print $5 } ')
+checks "Gid in /etc/crontab" "0/" "${chkGid}"
