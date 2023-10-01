@@ -53,5 +53,8 @@ checks "Uid in /etc/crontab" "0/" "${chkUid}"
 chkGid=$(stat /etc/crontab | grep "Gid:" | awk ' {print $9 } ')
 checks "Gid in /etc/crontab" "0/" "${chkGid}"
 
-chkUidPass=$(stat /etc/passwd)
-echo "${chkUidPass}"
+chkUidPass=$(stat /etc/passwd | grep "Acces:" | awk ' {print $5 } ')
+checks "Uid for pass perm" "0/" "${chkUid}"
+
+chkGidPass=$(stat /etc/passwd | grep "Acces:" | awk ' {print $9 } ')
+checks "Gid for pass perm" "0/" "${chkGid}"
