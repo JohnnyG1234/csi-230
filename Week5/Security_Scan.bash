@@ -28,3 +28,14 @@ checks "Password warn age" "7" "${pwarn}"
 # Check the SSH UsePam configuration
 chkSSHPAM=$(egrep -i "^UsePAM" /etc/ssh/ssh_config | awk ' { print $2 } ')
 checks "SSH UsePam" "yes" "${chkSSHPAM}"
+
+# Check permissions or users home directory
+
+echo ""
+for eachDir in $(ls -l /home | egrep '^d' | awk ' { print $3 } ')
+do
+
+    chDir=$(ls -ld /home/${eachDir} | awk ' {print $1 } ')
+    checks "Home Directory ${eachDir}" "drwx------" "${chDir}"
+
+done
