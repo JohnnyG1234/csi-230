@@ -6,5 +6,5 @@ if [[ "${pmax}" != "120" ]]
 then
     echo "The password max days policy is not compliant. The current policy is: ${pmax}"
 else
-    echo "The password max days policy is compliant
+    echo "The password max days policy is compliant"
 fi
