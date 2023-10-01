@@ -40,5 +40,5 @@ do
 
 done
 
-chkIpForward=$(egrep -i "^.ip_forward" /etc/sysctl.conf /etc/sysctl.d/*)
+chkIpForward=$(egrep -i "net\.ipv4\.ip_forward" /etc/sysctl.conf /etc/sysctl.d/* | awk ' { print $1 } ')
 checks "IP Forwading" "0" "${chkIpForward}"
