@@ -61,3 +61,6 @@ checks "Gid for pass perm" "0/" "${chkGid}"
 
 chkAccesPass=$(stat /etc/passwd | grep "Gid:" | awk ' {print $2 } ')
 checks "Acces num for pass" "(0644/-rw-r--r--)" "${chkAccesPass}"
+
+chkShadUid=$(stat /etc/shadow | grep "Gid:" | awk ' {print $5 } ')
+checks "Uid for /etc/shadow" "0/" "${chkShadUid}"
