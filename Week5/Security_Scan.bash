@@ -67,3 +67,7 @@ checks "Uid for /etc/shadow" "0/" "${chkShadUid}"
 
 chkShadGid=$(stat /etc/shadow | grep "Gid:" | awk ' {print $10 } ')
 checks "Gid for /etc/shadow" "0/" "${chkShadUid}"
+
+chkShadAcces=$(stat /etc/shadow | grep "Gid:" | awk ' {print $2 } ')
+checks "Acces for /etc/shadow" "(0640/-rw-r-----)" "${chkShadAcces}"
+
