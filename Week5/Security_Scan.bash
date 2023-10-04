@@ -77,4 +77,7 @@ checks "Uid for /etc/group" "0/" "${chkgroupUid}"
 chkgroupGid=$(stat /etc/group | grep "Gid:" | awk ' {print $9 } ')
 checks "Gid for /etc/group" "0/" "${chkgroupGid}"
 
+chkAccesGroup=$(stat /etc/passwd | grep "Gid:" | awk ' {print $2 } ')
+checks "Acces num for group" "(0644/-rw-r--r--)" "${chkAccesGroup}"
+
 
