@@ -74,7 +74,7 @@ checks "Acces for /etc/shadow" "(0640/-rw-r-----)" "${chkShadAcces}"
 chkgroupUid=$(stat /etc/group | grep "Gid:" | awk ' {print $5 } ')
 checks "Uid for /etc/group" "0/" "${chkgroupUid}"
 
-chkgroupGid=$(stat /etc/group | grep "Gid:" | awk ' {print $10 } ')
+chkgroupGid=$(stat /etc/group | grep "Gid:" | awk ' {print $9 } ')
 checks "Gid for /etc/group" "0/" "${chkgroupGid}"
 
 
