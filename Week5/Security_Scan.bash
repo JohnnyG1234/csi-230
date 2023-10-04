@@ -86,4 +86,7 @@ checks "No legacy + in /passwd" "" "${chkLegacy}"
 chkLegacySha=$(grep '^\+:' /etc/shadow)
 checks "No legacy + in /shadow" "" "${chkLegacySha}"
 
+chkLegacyGroup=$(grep '^\+:' /etc/group)
+checks "No legacy + in /group" "" "${chkLegacyGroup}"
+
 
