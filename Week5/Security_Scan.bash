@@ -89,4 +89,7 @@ checks "No legacy + in /shadow" "" "${chkLegacySha}"
 chkLegacyGroup=$(grep '^\+:' /etc/group)
 checks "No legacy + in /group" "" "${chkLegacyGroup}"
 
+checkRootUid=$(cat /etc/passwd | awk -F: '($3 == 0) { print $1 }')
+checks "Root is only Uid 0 account" "root" "${checkRootUid}"
+
 
