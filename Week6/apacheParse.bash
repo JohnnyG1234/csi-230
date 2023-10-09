@@ -7,10 +7,9 @@
 
 # Read in file
 
-echo "bro"
-
 # Arguements using the position they start at $1
 APACHE_LOG="$1"
+
 
 # check if file exists
 if [[ ! -f ${APACHE_LOG} ]]
@@ -18,3 +17,6 @@ then
     echo "Please specify the path to a log file."
     exit 1
 fi
+
+# Looking for web scanners
+sed -e "s/\[//g" -e "s/\"//g" ${APACHE_LOG}
