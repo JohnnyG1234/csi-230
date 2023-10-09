@@ -13,7 +13,7 @@ echo "bro"
 APACHE_LOG="$1"
 
 # check if file exists
-if [[ -f ${APACHE_LOG} ]]
+if [[ ! -f ${APACHE_LOG} ]]
 then
     echo "Please specify the path to a log file."
     exit 1
