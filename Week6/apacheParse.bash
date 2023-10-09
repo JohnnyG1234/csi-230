@@ -21,7 +21,7 @@ fi
 # Looking for web scanners
 sed -e "s/\[//g" -e "s/\"//g" ${APACHE_LOG} | \
 egrep -i "test|shell|echo|passwd|select|phpmyadmin|setup|admin|w00t" | \
-awk ' BEGIN { format = "%-15s %-20s %-7s %-6s %-10s %s\n"
+awk ' BEGIN { format = "%-15s %-20s %-6s %-6s %-5s %s\n"
                 printf format, "IP", "Date", "Method", "Status", "Size", "URI"
                 printf format, "--", "----", "------", "------", "----", "---"}
 
