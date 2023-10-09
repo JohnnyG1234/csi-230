@@ -7,6 +7,8 @@
 
 # Read in file
 
+echo "bro"
+
 # Arguements using the position they start at $1
 APACHE_LOG="$1"
 
