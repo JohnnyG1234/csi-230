@@ -1,0 +1,6 @@
+#TYPE Microsoft.PowerShell.Commands.HistoryInfo
+"Id","CommandLine","ExecutionStatus","StartExecutionTime","EndExecutionTime"
+"1","Get-SecureBootPolicy","Completed","11/9/2023 3:19:54 PM","11/9/2023 3:19:55 PM"
+"2","Get-Service","Completed","11/9/2023 3:20:00 PM","11/9/2023 3:20:01 PM"
+"3","cls","Completed","11/9/2023 3:20:03 PM","11/9/2023 3:20:03 PM"
+"4","C:\Users\jgrot\OneDrive\Desktop\CSI-230\csi-230\Week11\IncidentResponseToolkit.ps1","Completed","11/9/2023 3:21:12 PM","11/9/2023 3:21:14 PM"

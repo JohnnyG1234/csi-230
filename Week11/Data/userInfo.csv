@@ -1,0 +1,7 @@
+#TYPE Selected.System.Management.ManagementObject
+"Name","Status","PasswordRequired"
+"Administrator","Degraded","True"
+"DefaultAccount","Degraded","False"
+"Guest","Degraded","False"
+"jgrot","OK","True"
+"WDAGUtilityAccount","Degraded","True"
