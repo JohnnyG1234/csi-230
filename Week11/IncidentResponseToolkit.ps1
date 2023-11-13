@@ -1,5 +1,10 @@
 ﻿# storyline: An incident response toolkit that gives the user some usefull info in a easy to use way
 
+$path = Read-Host -Prompt "Where do you want to store data?"
+$dataPath = $path + "\data\"
+$hashPath = $path + "\data\hash.txt"
+New-Item -Path $hashPath
+
 
 function menu(){
     #display a menu and ask user what their choice is
@@ -29,8 +34,10 @@ function menu(){
         #I have no idea why :(
         Write-Host "Getting all TCP network sockets"
         Get-NetTCPConnection
+        $localPath = $dataPath + "\TCPSocks.csv"
         Get-NetTCPConnection | `
-        Export-Csv -Path "C:\Users\$Env:UserName\OneDrive\Desktop\CSI-230\csi-230\Week11\data\TCPSocks.csv"
+        Export-Csv -Path $localPath
+        Get-FileHash $localPath | Add-Content -Path $hashPath
         Read-Host -Prompt "Press enter to continue"
 
         menu
@@ -67,7 +74,7 @@ function menu(){
     }
     elseif ($userChoice -match "^[qQ]$"){
 
-        break
+        compress
 
     }
     else{
@@ -87,8 +94,11 @@ function seeRunningProcesses(){
 
     Write-Host "Getting running processes..."
     Get-Process | Select-Object PorcessName, Path, ID
+
+    $localPath = $dataPath + "\myProcesses.csv"
     Get-Process | Select-Object PorcessName, Path, ID | `
-    Export-Csv -Path "C:\Users\$Env:UserName\OneDrive\Desktop\CSI-230\csi-230\Week11\data\myProcesses.csv"
+    Export-Csv -Path $localPath
+    Get-FileHash $localPath | Add-Content -Path $hashPath
     Read-Host -Prompt "Press enter to continue"
 
     menu  
@@ -100,8 +110,11 @@ function getAllRegisteredServices(){
 
     Write-Host "Getting all registered services..."
     Get-WmiObject -Class Win32_Service | select Name, PathName
+
+    $localPath = $dataPath + "\myServices.csv"
     Get-WmiObject -Class Win32_Service | select Name, PathName | `
-    Export-Csv -Path "C:\Users\$Env:UserName\OneDrive\Desktop\CSI-230\csi-230\Week11\data\myServices.csv"
+    Export-Csv -Path $localPath
+    Get-FileHash $localPath | Add-Content -Path $hashPath
     Read-Host -Prompt "Press enter to continue"
 
     menu
@@ -114,8 +127,11 @@ function getAllUserInfo(){
     Write-Host "Getting all user info..."
     Write-Host "Name               Statues        Password Required"
     Get-WmiObject -Class Win32_UserAccount | select Name, Status, PasswordRequired
+
+    $localPath = $dataPath + "\userInfo.csv"
     Get-WmiObject -Class Win32_UserAccount | select Name, Status, PasswordRequired | `
-    Export-Csv -Path "C:\Users\$Env:UserName\OneDrive\Desktop\CSI-230\csi-230\Week11\data\userInfo.csv"
+    Export-Csv -Path $localPath
+    Get-FileHash $localPath | Add-Content -Path $hashPath
     Read-Host -Prompt "Press enter to continue"
     
     menu
@@ -128,8 +144,11 @@ function getNetworkdAdpConfig(){
     Write-Host "Getting Network Adapter Configuration Info..."
     Write-Host "User Configuaration      Adapter type        Name"
     Get-WmiObject -Class Win32_NetworkAdapter | select ConfigManagerUserConfig, AdapterType, Name
+
+    $localPath = $dataPath + "\NetworkdAdapterConfig.csv"
     Get-WmiObject -Class Win32_NetworkAdapter | select ConfigManagerUserConfig, AdapterType, Name | `
-    Export-Csv -Path "C:\Users\$Env:UserName\OneDrive\Desktop\CSI-230\csi-230\Week11\data\NetworkdAdapterConfig.csv"
+    Export-Csv -Path $localPath
+    Get-FileHash $localPath | Add-Content -Path $hashPath
     Read-Host -Prompt "Press enter to continue"
 
     menu
@@ -141,9 +160,12 @@ function getCommandHistory(){
     
     Write-Host "Getting command history..."
     Get-History
+
+    $localPath = $dataPath + "\commandHistory.csv"
     Get-History | `
-    Export-Csv -Path "C:\Users\$Env:UserName\OneDrive\Desktop\CSI-230\csi-230\Week11\data\commandHistory.csv"
+    Export-Csv -Path $localPath
     Read-Host -Prompt "Press enter to continue"
+    Get-FileHash $localPath | Add-Content -Path $hashPath
 
     menu
 }
@@ -209,4 +231,11 @@ function revengeOfTheSith(){
 
 }
 
+function compress(){
+    $comrpessPath = $path + "\Data.zip"
+    Compress-Archive  $dataPath $comrpessPath
+}
+
+
 menu
+
