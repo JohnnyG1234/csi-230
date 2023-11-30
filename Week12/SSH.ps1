@@ -1,5 +1,5 @@
 ﻿# Login to a remote SSH server
-#New-SSHSession -ComputerName '192.168.4.22' -Credential (Get-Credential sys320)
+New-SSHSession -ComputerName '192.168.4.22' -Credential (Get-Credential sys320)
 
 while ($True) {
 
@@ -10,6 +10,7 @@ while ($True) {
     (Invoke-SSHCommand -index 0 $the_cmd).Output
 
 }
+
 
 
 Set-SCPFile -ComputerName '192.168.4.22' -Credential (Get-Credential sys320) `
